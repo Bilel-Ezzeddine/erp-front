@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <button (click)="myDrawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span style="flex: auto"></span>
+  <div [matMenuTriggerFor]="importMenu">
+    <img src="./assets/images/1.png" alt="Profile" class="profile-photo">
+  </div>
+  <mat-menu #importMenu>
+    <button mat-menu-item>
+      Profile
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<mat-drawer-container>
+  <mat-drawer #myDrawer opened="true" mode="side" position="start">
+    <mat-list>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/home">
+          <mat-icon>home</mat-icon>
+          Home
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/categories">
+          <mat-icon>category</mat-icon>
+          Categories
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button routerLink="/admin/products">
+          <mat-icon>card_travel</mat-icon>
+          Products
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+    <div style="min-height: 600px"></div>
+  </mat-drawer-content>
+</mat-drawer-container>

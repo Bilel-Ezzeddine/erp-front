@@ -1,0 +1,36 @@
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+mat-divider {
+  margin: 20px 0;
+}
+
+.btn-spacing {
+  margin-left: 8px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+
+

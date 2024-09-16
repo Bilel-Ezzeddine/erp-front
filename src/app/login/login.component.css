@@ -1,0 +1,13 @@
+mat-form-field {
+  display: block;
+}
+
+.login-form{
+  width: 400px;
+  flex: auto;
+  margin: auto;
+}
+
+mat-divider {
+  margin: 20px 0;
+}

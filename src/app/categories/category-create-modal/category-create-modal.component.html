@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ data.isUpdate ? 'Edit Category' : 'Create Category' }}</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+  <form [formGroup]="categoryForm" class="category-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Category Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter category name" />
+        <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
+          Product name is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+
+  <button mat-raised-button color="primary" [disabled]="categoryForm.invalid" (click)="onSave()">
+    {{ data.isUpdate ? 'Update' : 'Create' }}
+  </button>
+</mat-dialog-actions>

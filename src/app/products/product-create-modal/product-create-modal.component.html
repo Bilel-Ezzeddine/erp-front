@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{ data.isUpdate ? 'Edit Product' : 'Create Product' }}</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+  <form [formGroup]="productForm" class="product-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Product Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter product name" />
+        <mat-error *ngIf="productForm.controls['name'].hasError('required')">
+          Product name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Barcode</mat-label>
+        <input matInput formControlName="barcode" placeholder="Enter barcode" />
+        <mat-error *ngIf="productForm.controls['barcode'].hasError('required')">
+          Barcode is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" placeholder="Enter price" type="number" />
+        <mat-error *ngIf="productForm.controls['price'].hasError('min')">
+          Price must be a positive number
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Quantity</mat-label>
+        <input matInput formControlName="quantity" placeholder="Enter quantity" type="number" />
+        <mat-error *ngIf="productForm.controls['quantity'].hasError('min')">
+          Quantity must be a positive number
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let category of (categories$ | async)?.content" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="productForm.controls['categoryId'].hasError('required')">
+        Category is required
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+
+  <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="onSave()">
+    {{ data.isUpdate ? 'Update' : 'Create' }}
+  </button>
+</mat-dialog-actions>
